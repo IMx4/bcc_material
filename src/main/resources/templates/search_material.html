@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="common_header :: common-header"></head>
+
+<body>
+
+<div th:replace="navbar :: navbar"></div>
+
+<h1>Search Page</h1>
+
+<div class="container">
+    <div class="row" >
+        <div class="col col-md-6" th:each="category : ${categories}"}>
+            <button type="submit" class="btn btn-primary btn-lg"id="search-row" th:text="${category}">Category</button>
+        </div>
+    </div>
+</div>
+
+
+</body>
+
+<div th:replace="common_footer :: common-footer"></div>
+
+</html>
