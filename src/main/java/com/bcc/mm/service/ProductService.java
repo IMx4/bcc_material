@@ -1,6 +1,7 @@
 package com.bcc.mm.service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -26,7 +27,6 @@ public class ProductService implements IProductService {
 	}
 
 
-
 	public boolean save(ProductDTO productDTO) {
 		
 		productDAO.save(productDTO);
@@ -39,10 +39,16 @@ public class ProductService implements IProductService {
 		return productDAO.findByCategoryLike(category);
 	}
 
-//	public List<ProductDTO> findDistinctByCategory(){
-//
-//		return productDAO.findDistinctByCategory();
-//	}
+	public List<String> getCategories(){
+
+		List<String> categories = productDAO.getAll()
+				.stream()
+				.map(x -> x.getCategory())
+				.distinct()
+				.collect(Collectors.toList());
+
+		return categories;
+	}
 
 
 }

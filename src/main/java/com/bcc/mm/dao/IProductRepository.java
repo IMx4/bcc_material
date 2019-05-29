@@ -11,7 +11,6 @@ public interface IProductRepository extends CrudRepository<ProductDTO, Integer> 
 
     List<ProductDTO> findDistinctProductByCategoryLike(String category);
 
-    //List<ProductDTO> findDistinctByCategory();
-
+    List<ProductDTO> findDistinctProductByThickLike(String thick);
 
 }

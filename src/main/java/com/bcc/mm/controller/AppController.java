@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.bcc.mm.dto.ProductDTO;
 import com.bcc.mm.service.IProductService;
-import org.springframework.web.bind.annotation.RequestParam;
+
 
 @Controller
 public class AppController {
@@ -38,10 +38,9 @@ public class AppController {
 	@RequestMapping(value="/search_material", method = RequestMethod.GET)
 	public String searchMaterial(Model model){
 
-		CategoryService cs = new CategoryService();
-		List<String> categories = cs.getCategories();
 
-		model.addAttribute("categories",categories);
+		List<String> categories = productService.getCategories();
+		model.addAttribute("categories", categories);
 
 
 		return "search_material";

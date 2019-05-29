@@ -1,5 +1,9 @@
 package com.bcc.mm.service;
 
+import com.bcc.mm.MmApplication;
+import org.apache.logging.log4j.util.PropertiesUtil;
+
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -23,7 +27,7 @@ public class CategoryService {
         property = new Properties();
 
         try {
-            property.load(new FileInputStream("C:\\Users\\24rov\\eclipse-workspace\\mm\\src\\main\\resources\\application.properties"));
+            property.load(new FileInputStream("/main/resources/application.properties"));
         } catch (
                 IOException e) {
             e.printStackTrace();
@@ -35,9 +39,6 @@ public class CategoryService {
     }
 
     public List<String> getCategories(){
-
-
-
         return categories;
     }
 

@@ -33,15 +33,19 @@ public class ProductDAO {
 
 	public List<ProductDTO> findByCategoryLike(String name){
 
-		List<ProductDTO> byCategory = (List<ProductDTO>) productRepository.findDistinctProductByCategoryLike(name);
+		List<ProductDTO> byCategory = productRepository.findDistinctProductByCategoryLike(name);
 
 		return byCategory;
 	}
 
-//	public List<ProductDTO> findDistinctByCategory(){
-//
-//		return productRepository.findDistinctByCategory();
-//	}
+
+	public List<ProductDTO> findByThick(String thick){
+
+		List<ProductDTO> byThickness = productRepository.findDistinctProductByThickLike(thick);
+
+		return byThickness;
+	}
+
 
 
 
