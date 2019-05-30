@@ -1,25 +1,21 @@
 package com.bcc.mm.controller;
 
-
+import java.util.ArrayList;
 import java.util.List;
-
 import com.bcc.mm.service.CategoryService;
+import com.bcc.mm.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-
+import org.springframework.web.bind.annotation.*;
 import com.bcc.mm.dto.ProductDTO;
-import com.bcc.mm.service.IProductService;
 
 
 @Controller
 public class AppController {
 	
 	@Autowired
-	IProductService productService;
+	ProductService productService;
 	
 
 	@RequestMapping("/login")
@@ -47,27 +43,15 @@ public class AppController {
 	}
 
 
-
-
 	@RequestMapping(value = "/add_material", method = RequestMethod.GET)
 	public String add(Model model) {
-		
-		ProductDTO product = new ProductDTO();
-		product.setDescription("");
-		product.setLength("");
-		product.setWidth("");
-		product.setThick("");
-		product.setCategory("");
-		product.setQty(2);
-		product.setDate();
-		product.setStockControl(false);
-		product.setStockControlMin(10);
-		
-		model.addAttribute("product", product);
 
 		CategoryService cs = new CategoryService();
 		List<String> categories = cs.getCategories();
 
+		ProductDTO product = new ProductDTO();
+
+		model.addAttribute("product", product);
 		model.addAttribute("categories",categories);
 
 		return"add_material";
@@ -78,17 +62,7 @@ public class AppController {
 		
 		
 		productService.save(product);
-		System.out.println(product.getDescription());
-		System.out.println(product.getCategory());
-		System.out.println(product.getLength());
-		System.out.println(product.getWidth());
-		System.out.println(product.getThick());
-		System.out.println(product.isStockControl());
 
-
-
-
-		
 		return "/index";
 	}
 	
@@ -99,6 +73,40 @@ public class AppController {
 		model.addAttribute("inventory", all);
 		
 		return "all_products";
+	}
+
+//	@GetMapping("/test")
+//	public String search(Model model){
+//
+//		productService.findByCategoryLike()
+//
+//		model.addAttribute("keyword");
+//
+//		return "test";
+//	}
+//
+//	@PostMapping("/test")
+//	public String search(@RequestParam String keyword){
+//
+//		System.out.println(keyword);
+//
+//
+//
+//		return "test";
+//	}
+
+	@RequestMapping("/test/{keyword}")
+	public String search(@PathVariable String keyword, Model model){
+
+		List<String> searchList = productService.search(keyword);
+		//productService.search(keyword);
+		//List<ProductDTO> searchList = new ArrayList<>();
+
+
+		model.addAttribute("inventory", searchList);
+		model.addAttribute("keyword", keyword);
+
+		return "test";
 	}
 	
 	

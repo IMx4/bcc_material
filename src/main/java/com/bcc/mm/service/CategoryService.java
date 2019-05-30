@@ -1,12 +1,7 @@
 package com.bcc.mm.service;
 
-import com.bcc.mm.MmApplication;
-import org.apache.logging.log4j.util.PropertiesUtil;
-
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Properties;
@@ -27,7 +22,7 @@ public class CategoryService {
         property = new Properties();
 
         try {
-            property.load(new FileInputStream("/main/resources/application.properties"));
+            property.load(new FileInputStream("./main/resources/application.properties"));
         } catch (
                 IOException e) {
             e.printStackTrace();

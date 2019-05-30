@@ -12,48 +12,39 @@ import javax.persistence.Id;
 
 
 @Entity
-//@Table(name="inventory")
 public class ProductDTO {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
-	private String category;
-	private String date;
     private String description;
     private String length;
-    private int qty;   
-    private String thick;
     private String width;
+    private String thick;
+    private int qty;
+    private String category;
+    private String date;
     private boolean stockControl;
     private int stockControlMin;
+
+
     
    
     
     public ProductDTO(){
-    	
-    }
 
-    ProductDTO(String desc, String l, String w, String t, int qty, String cat){
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-        description = desc;
-        length = l;
-        width = w;
-        thick = t;
-        this.qty = qty;
-        category = cat;
-    }
+        description = "";
+        length = "";
+        width = "";
+        thick = "";
+        qty = 0;
+        category = "";
+        date = dateFormat.format(new java.sql.Date(System.currentTimeMillis()));
+        stockControl = false;
+        stockControlMin = 0;
 
-    ProductDTO(int id, String desc, String l, String w, String t, int qty, String date, String cat){
-
-        this.id = id;
-        description = desc;
-        length = l;
-        width = w;
-        thick = t;
-        this.qty = qty;
-        this.date = date;
-        category = cat;
     }
 
     public int getId() {
