@@ -22,13 +22,20 @@ public interface IProductRepository extends CrudRepository<ProductDTO, Integer> 
 //    @Query("SELECT id AS id, description AS description FROM ProductDTO where description like %:keyword%")
 //    public List<String> search(@Param("keyword") String keyword);
 
-    @Query("SELECT id , description ," +
-            "category," +
-            "length," +
-            "date," +
-            "width," +
-            "thick" +
-            " FROM ProductDTO where description like %:keyword%")
-    public List<String> search(@Param("keyword") String keyword);
+//    @Query("SELECT id , description ," +
+//            "category," +
+//            "length," +
+//            "date," +
+//            "width," +
+//            "thick" +
+//            " FROM ProductDTO where description like %:keyword%")
+//    public List<String> search(@Param("keyword") String keyword);
+
+    @Query("SELECT new ProductDTO(id, description, length, width, " +
+            "thick, qty, category, date, stockControl, " +
+            "stockControlMin) FROM ProductDTO where description like %:keyword%")
+    public List<ProductDTO> search(@Param("keyword") String keyword);
+
+
 
 }

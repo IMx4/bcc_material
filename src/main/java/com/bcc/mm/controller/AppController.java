@@ -5,6 +5,7 @@ import java.util.List;
 import com.bcc.mm.service.CategoryService;
 import com.bcc.mm.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -95,10 +96,14 @@ public class AppController {
 //		return "test";
 //	}
 
-	@RequestMapping("/test/{keyword}")
-	public String search(@PathVariable String keyword, Model model){
+	//@RequestMapping("/test/{keyword}")
+	@RequestMapping("/test")
+	//public String search(@PathVariable String keyword, Model model){
+		public String search(@PathVariable String keyword, Model model){
 
-		List<String> searchList = productService.search(keyword);
+	    //String keyword = "pre";
+
+		List<ProductDTO> searchList = productService.search(keyword);
 		//productService.search(keyword);
 		//List<ProductDTO> searchList = new ArrayList<>();
 

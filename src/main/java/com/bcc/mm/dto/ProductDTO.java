@@ -47,6 +47,22 @@ public class ProductDTO {
 
     }
 
+    public ProductDTO(int id, String description, String length, String width, String thick, int qty, String category, String date, boolean stockControl, int stockControlMin){
+
+            this.id = id;
+            this.description = description;
+            this.length = length;
+            this.width = width;
+            this.thick = thick;
+            this.qty = qty;
+            this.category = category;
+            this.date = date;
+            this.stockControl = stockControl;
+            this.stockControlMin = stockControlMin;
+
+
+    }
+
     public int getId() {
         return id;
     }

@@ -13,8 +13,12 @@
 
 <div class="container">
     <div class="row">
+        <!--
         <form th:action="@{'/test/' + ${keyword}}" th:object="${keyword}" method="post">
-            <input type="text" id="keyword" name="keyword"/>
+        <form th:action="@{'/test" th:object="${keyword}" method="post">
+            -->
+        <form th:action="@{'/test}" method="get">
+            <input type="text" id="keyword" name="keyword" />
             <button type="submit">Add</button>
         </form>
     </div>
@@ -40,15 +44,14 @@
         </tr>
         -->
         <tr scope="row" th:each="item : ${inventory}">
-            <td><span th:text="${item}"> Description </span></td>
-            <!--
+            <td><span th:text="${item.description}"> Description </span></td>
             <td><span th:text="${item.qty}"> Qty </span></td>
             <td><span th:text="${item.length}"> Length </span></td>
             <td><span th:text="${item.width}"> Width </span></td>
             <td><span th:text="${item.thick}"> Thick </span></td>
             <td><span th:text="${item.category}"> Category </span></td>
-            -->
             <td><span><button type="button">Edit</button></span></td>
+
         </tr>
         </tbody>
     </table>
