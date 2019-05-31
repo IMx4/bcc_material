@@ -12,6 +12,17 @@
 <link type="text/css" rel="stylesheet" href="../css/bootstrap.css" th:href="@{css/bootstrap.css}">
 <!-- Custom CSS -->
 <link type="text/css" rel="stylesheet" href="../css/custom.css" th:href="@{css/custom.css}">
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script>
+	$(function(){
+	$("#key").autocomplete({
+	source: "search",
+	minLength: 2
+	});
+	});
+	</script>
+
 
 <title>Material Manager</title>
 </head>

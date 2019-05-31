@@ -76,43 +76,23 @@ public class AppController {
 		return "all_products";
 	}
 
-//	@GetMapping("/test")
-//	public String search(Model model){
-//
-//		productService.findByCategoryLike()
-//
-//		model.addAttribute("keyword");
-//
-//		return "test";
-//	}
-//
-//	@PostMapping("/test")
-//	public String search(@RequestParam String keyword){
-//
-//		System.out.println(keyword);
-//
-//
-//
-//		return "test";
-//	}
-
-	//@RequestMapping("/test/{keyword}")
-	@RequestMapping("/test")
-	//public String search(@PathVariable String keyword, Model model){
-		public String search(@PathVariable String keyword, Model model){
-
-	    //String keyword = "pre";
-
-		List<ProductDTO> searchList = productService.search(keyword);
-		//productService.search(keyword);
-		//List<ProductDTO> searchList = new ArrayList<>();
+	@GetMapping("/search")
+	public String search(){
 
 
-		model.addAttribute("inventory", searchList);
-		model.addAttribute("keyword", keyword);
 
-		return "test";
+		return "search";
 	}
-	
+
+	@PostMapping("/search")
+	public String search(@RequestParam(name="keyword") String keyword, Model model){
+
+		System.out.println(keyword);
+		List<ProductDTO> searchList = productService.search(keyword);
+		model.addAttribute("inventory", searchList);
+
+		return "search";
+	}
+
 	
 }

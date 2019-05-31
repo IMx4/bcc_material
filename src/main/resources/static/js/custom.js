@@ -20,4 +20,6 @@ function showMinStock(){
         min.hidden = true;
     }
 
+
+
 }

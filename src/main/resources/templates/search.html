@@ -9,19 +9,24 @@
 <div th:replace="navbar :: navbar"></div>
 
 
-<h1>Testing</h1>
 
-<div class="container">
-    <div class="row">
-        <!--
-        <form th:action="@{'/test/' + ${keyword}}" th:object="${keyword}" method="post">
-        <form th:action="@{'/test" th:object="${keyword}" method="post">
-            -->
-        <form th:action="@{'/test}" method="get">
-            <input type="text" id="keyword" name="keyword" />
-            <button type="submit">Add</button>
+
+
+<div class="container" id="searchBar">
+   <div class="row">
+    <div class="input-group">
+
+        <form th:action="@{/search}"  method="post">
+            <label for="key"><h2>Enter Search Term</h2></label>
+            <input type="text" class="form-control" id="key" name="keyword" th:value="*{keyword}"/>
+            <br>
+            <button type="submit" id="searchBtn" class="btn btn-primary btn-lg">Search</button>
+
+
         </form>
     </div>
+
+   </div>
 </div>
 
 <div class="container">
@@ -38,11 +43,7 @@
         </tr>
         </thead>
         <tbody>
-        <!--
-        <tr th:if="${inventory.size() == 0}">
-            <td colspan="2"> No Inventory </td>
-        </tr>
-        -->
+
         <tr scope="row" th:each="item : ${inventory}">
             <td><span th:text="${item.description}"> Description </span></td>
             <td><span th:text="${item.qty}"> Qty </span></td>

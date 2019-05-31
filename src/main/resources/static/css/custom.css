@@ -27,7 +27,7 @@ body{
 #index-buttons{
 	
 	margin: 35px;
-	paddign: 75px;
+	padding: 75px;
 	
 }
 
@@ -44,3 +44,15 @@ width: 100%;
 height:90%;
 
 }
+
+#keyword{
+
+    font-size: 16pt;
+}
+
+#searchBar{
+
+    padding: 30px;
+
+}
+

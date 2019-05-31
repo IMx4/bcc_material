@@ -73,35 +73,12 @@ public class ProductService implements IProductService{
 		return allCategories;
 	}
 
-//	public List<String> search(String keyword){
-//
-//		//List<String> allCategories = repository.search(keyword);
-//		List<String> t = repository.search(keyword);
-//
-//
-//
-//
-//		//return allCategories;
-//		return null;
-//	}
 
 	public List<ProductDTO> search(String keyword){
 
-		//List<String> allCategories = repository.search(keyword);
-		List<ProductDTO> t = repository.search(keyword);
+		List<ProductDTO> result = repository.search(keyword);
 
-		for(ProductDTO pd : t){
-			System.out.println(pd.getDescription());
-			System.out.println(pd.getCategory());
-			System.out.println(pd.getDate());
-		}
-
-
-
-
-
-		//return allCategories;
-		return t;
+		return result;
 	}
 
 
