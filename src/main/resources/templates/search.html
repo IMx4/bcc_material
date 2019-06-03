@@ -15,10 +15,22 @@
 <div class="container" id="searchBar">
    <div class="row">
     <div class="input-group">
+        <script>
+
+	        $(function(){
+	        $("#keyword").autocomplete({
+	        source: "search/result",
+	        minLength: 2
+	        });
+
+	    });
+
+	    </script>
+
 
         <form th:action="@{/search}"  method="post">
-            <label for="key"><h2>Enter Search Term</h2></label>
-            <input type="text" class="form-control" id="key" name="keyword" th:value="*{keyword}"/>
+            <label for="keyword"><h2>Enter Search Term</h2></label>
+            <input type="text" class="form-control" id="keyword" name="keyword" th:value="*{keyword}"/>
             <br>
             <button type="submit" id="searchBtn" class="btn btn-primary btn-lg">Search</button>
 
@@ -29,8 +41,8 @@
    </div>
 </div>
 
-<div class="container">
-    <table class="table table-dark">
+<div class="container" id="productTable">
+    <table class="table table-dark" >
         <thead>
         <tr>
             <th scope="col"> Description </th>

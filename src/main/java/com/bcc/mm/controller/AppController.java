@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import com.bcc.mm.dto.ProductDTO;
+import org.springframework.web.servlet.ModelAndView;
 
 
 @Controller
@@ -76,23 +77,52 @@ public class AppController {
 		return "all_products";
 	}
 
-	@GetMapping("/search")
-	public String search(){
+    @RequestMapping(value = "/search", method = RequestMethod.GET)
+    public String search(){
 
+
+        return "search";
+    }
+
+	@RequestMapping(value = "/search", method = RequestMethod.POST)
+	public String search(@RequestParam(value="keyword")String term, Model model){
+
+        System.out.println(term);
+        List<ProductDTO> searchList = productService.search(term);
+
+	    model.addAttribute("inventory", searchList);
 
 
 		return "search";
 	}
 
-	@PostMapping("/search")
-	public String search(@RequestParam(name="keyword") String keyword, Model model){
+    @RequestMapping(value = "/search/result", method = RequestMethod.GET)
+    @ResponseBody
+    public List<String> searchResult(@RequestParam(value="term",required = false, defaultValue="")String term){
 
-		System.out.println(keyword);
-		List<ProductDTO> searchList = productService.search(keyword);
-		model.addAttribute("inventory", searchList);
+	    List<String> results = new ArrayList<>();
 
-		return "search";
-	}
+        List<ProductDTO> searchList = productService.search(term);
+        for(ProductDTO item : searchList){
+            results.add(item.getDescription());
+
+        }
+
+        return results;
+    }
+
+
+//    @RequestMapping(value="/search")
+//    public List<ProductDTO> search(@RequestParam(value="term",required = false, defaultValue="")String term, Model model){
+//
+//        System.out.println(term);
+//            List<ProductDTO> searchList = productService.search(term);
+//		model.addAttribute("inventory", searchList);
+//
+//		return searchList;
+//
+//        }
+
 
 	
 }
