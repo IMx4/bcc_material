@@ -21,12 +21,9 @@ public interface IProductRepository extends CrudRepository<ProductDTO, Integer> 
 
     void deleteById(int id);
 
-
     @Query("SELECT new ProductDTO(id, description, length, width, " +
             "thick, qty, category, date, stockControl, " +
             "stockControlMin) FROM ProductDTO where description like %:keyword%")
     public List<ProductDTO> search(@Param("keyword") String keyword);
-
-
 
 }

@@ -11,7 +11,7 @@
 <div th:replace="navbar :: navbar"></div>
 
 <div class="container">
-	<table class="table table-dark">
+	<table class="table table-hover table-dark">
 	    <thead>
 	        <tr>
 	            <th scope="col"> Description </th>
@@ -34,7 +34,10 @@
 	            <td><span th:text="${item.width}"> Width </span></td>
 	            <td><span th:text="${item.thick}"> Thick </span></td>
 	            <td><span th:text="${item.category}"> Category </span></td>
-	            <td><span><button type="button">Edit</button></span></td>
+				<form action="/edit">
+					<input type="text" name="product" th:value="*{item.id}" hidden="true"/>
+					<td><span><button type="submit">Edit</button></span></td>
+				</form>
 	        </tr>
 	    </tbody>
 	</table>

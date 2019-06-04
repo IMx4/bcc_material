@@ -2,6 +2,12 @@
  * 
  */
 
+function addItem() {
+	const x = document.getElementById("description").value;
+	document.getElementById("modalBody").innerHTML = "Add - " + x;
+
+}
+
 function getDesc() {
 	const x = document.getElementById("description").value;
 	document.getElementById("modalBody").innerHTML = "Change - " + x;

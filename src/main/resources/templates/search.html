@@ -6,76 +6,76 @@
 
 <body>
 
-<div th:replace="navbar :: navbar"></div>
+    <div th:replace="navbar :: navbar"></div>
 
 
 
 
 
-<div class="container" id="searchBar">
-   <div class="row">
-    <div class="input-group">
-        <script>
-
-	        $(function(){
-	        $("#keyword").autocomplete({
-	        source: "search/result",
-	        minLength: 2
-	        });
-
-	    });
-
-	    </script>
+    <div class="container" id="searchBar">
+        <div class="row">
+            <div class="input-group">
+                <script>
+                    $(function () {
+                        $("#keyword").autocomplete({
+                            source: "search/result",
+                            minLength: 2
+                        });
+                    });
+                </script>
 
 
-        <form th:action="@{/search}"  method="post">
-            <label for="keyword"><h2>Enter Search Term</h2></label>
-            <input type="text" class="form-control" id="keyword" name="keyword" th:value="*{keyword}"/>
-            <br>
-            <button type="submit" id="searchBtn" class="btn btn-primary btn-lg">Search</button>
+                <form th:action="@{/search}" method="post">
+                    <label for="keyword">
+                        <h2>Enter Search Term</h2>
+                    </label>
+                    <input type="text" class="form-control" id="keyword" name="keyword" th:value="*{keyword}" />
+                    <br>
+                    <button type="submit" id="searchBtn" class="btn btn-primary btn-lg">Search</button>
 
 
-        </form>
+                </form>
+            </div>
+
+        </div>
     </div>
 
-   </div>
-</div>
+    <div class="container" id="productTable">
+        <table class="table table-hover table-dark">
+            <thead>
+                <tr>
+                    <th scope="col"> Description </th>
+                    <th scope="col"> Quantity </th>
+                    <th scope="col"> Length </th>
+                    <th scope="col"> Width </th>
+                    <th scope="col"> Thick </th>
+                    <th scope="col"> Category </th>
+                    <th scope="col"> Edit </th>
+                </tr>
+            </thead>
+            <tbody>
 
-<div class="container" id="productTable">
-    <table class="table table-dark" >
-        <thead>
-        <tr>
-            <th scope="col"> Description </th>
-            <th scope="col"> Quantity </th>
-            <th scope="col"> Length </th>
-            <th scope="col"> Width </th>
-            <th scope="col"> Thick </th>
-            <th scope="col"> Category </th>
-            <th scope="col"> Edit </th>
-        </tr>
-        </thead>
-        <tbody>
+                <tr scope="row" th:each="item : ${inventory}">
+                    <td><span th:text="${item.description}"> Description </span></td>
+                    <td><span th:text="${item.qty}"> Qty </span></td>
+                    <td><span th:text="${item.length}"> Length </span></td>
+                    <td><span th:text="${item.width}"> Width </span></td>
+                    <td><span th:text="${item.thick}"> Thick </span></td>
+                    <td><span th:text="${item.category}"> Category </span></td>
+                    <form action="/edit">
+                        <input type="text" name="product" th:value="*{item.id}" hidden="true" />
+                        <td><span><button type="submit">Edit</button></span></td>
+                    </form>
 
-        <tr scope="row" th:each="item : ${inventory}">
-            <td><span th:text="${item.description}"> Description </span></td>
-            <td><span th:text="${item.qty}"> Qty </span></td>
-            <td><span th:text="${item.length}"> Length </span></td>
-            <td><span th:text="${item.width}"> Width </span></td>
-            <td><span th:text="${item.thick}"> Thick </span></td>
-            <td><span th:text="${item.category}"> Category </span></td>
-            <form action="/edit">
-                <input type="text" name="product" th:value="*{item.id}" hidden="true"/>
-            <td><span><button type="submit">Edit</button></span></td>
-            </form>
-
-        </tr>
-        </tbody>
-    </table>
-</div>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
 
 
-<div th:replace="common_footer :: common-footer"></div>
+    <div th:replace="common_footer :: common-footer"></div>
 
 </body>
+
 </html>
