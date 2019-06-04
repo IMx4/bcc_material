@@ -73,8 +73,6 @@
 
 
                     <!-- Modal -->
-
-
                     <div class="modal fade" id="exampleModal" tabindex="-1"
                          role="dialog" aria-labelledby="exampleModalLabel"
                          aria-hidden="true">
@@ -102,10 +100,13 @@
                             </div>
                         </div>
                     </div>
+
+
                     <button type="button" class="btn btn-primary" data-toggle="modal"
                             data-target="#exampleModal" onclick="getDesc()" id="material-submit">Submit
                     </button>
                     <button type="button" class="btn btn-primary" id="material-clear">Clear Form</button>
+                    <button class="btn btn-danger" id="material-delete" th:formaction="@{/delete}">Delete</button>
                 </div>
             </div>
         </div>

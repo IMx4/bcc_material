@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="common_header :: common-header"></head>
+
+<body class="container">
+
+<div th:replace="navbar :: navbar"></div>
+
+
+
+<div class="container" id="add-material">
+
+
+    <form action="#" th:action="@{/deleteNow}" th:object="${item}"
+          method="post">
+
+
+            <h1>Are your sure you want to delete</h1>
+            <h2 th:text="*{description} + ' From Database'" id="del-desc"></h2>
+            <input th:name="id" th:value="*{id}" hidden="true"/>
+
+
+        <div>
+            <div class="modal fade" id="exampleModal" tabindex="-1"
+                 role="dialog" aria-labelledby="exampleModalLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Add New
+                                Material</h5>
+                            <button type="button" class="close" data-dismiss="modal"
+                                    aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p id=modalBody></p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary" >OK
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="getDescForDelete()" id="-material-submit">Yes</button>
+                <button type="submit" class="btn btn-primary" th:formaction="@{/}">No</button>
+
+        </div>
+
+    </form>
+
+
+
+
+
+
+
+</div>
+
+
+
+
+<div th:replace="common_footer :: common-footer"></div>
+
+</body>
+</html>

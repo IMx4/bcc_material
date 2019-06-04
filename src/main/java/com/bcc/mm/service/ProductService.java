@@ -83,6 +83,16 @@ public class ProductService implements IProductService{
 		return result;
 	}
 
+	public boolean delete(int id){
+
+		if(repository.findById(id).isPresent()){
+
+			repository.deleteById(id);
+			return true;
+
+		}
+		return false;
+	}
 
 
 

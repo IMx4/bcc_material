@@ -127,10 +127,22 @@ public class AppController {
 	@PostMapping(value="/update")
 	public String update(@ModelAttribute(value="item") ProductDTO product){
 
-
 		productService.save(product);
-		//System.out.println("ID: " + product.getId());
-		//System.out.println("DESC: " + product.getDescription());
+
+		return "index";
+	}
+
+
+	@PostMapping(value="/delete")
+	public void delete(@ModelAttribute(value="item") ProductDTO product, Model model){
+
+		model.addAttribute("item", product);
+	}
+
+	@PostMapping(value="/deleteNow")
+	public String deleteNow(@ModelAttribute(value="id") String id){
+
+		productService.delete(Integer.parseInt(id));
 
 		return "index";
 	}

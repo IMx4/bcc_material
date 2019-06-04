@@ -8,6 +8,12 @@ function getDesc() {
 
 }
 
+function getDescForDelete() {
+	const x = document.getElementById("del-desc").innerHTML;
+	document.getElementById("modalBody").innerHTML = "Item Deleted - " + x;
+
+}
+
 function showMinStock(){
 
     const min = document.getElementById("inventory-control-toggle");
