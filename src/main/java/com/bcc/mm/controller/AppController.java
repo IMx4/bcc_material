@@ -33,16 +33,16 @@ public class AppController {
 		return "index";
 	}
 
-	@RequestMapping(value="/search_material", method = RequestMethod.GET)
-	public String searchMaterial(Model model){
-
-
-		List<String> categories = productService.getCategories();
-		model.addAttribute("categories", categories);
-
-
-		return "search_material";
-	}
+//	@RequestMapping(value="/search_material", method = RequestMethod.GET)
+//	public String searchMaterial(Model model){
+//
+//
+//		List<String> categories = productService.getCategories();
+//		model.addAttribute("categories", categories);
+//
+//
+//		return "search_material";
+//	}
 
 
 	@RequestMapping(value = "/add_material", method = RequestMethod.GET)
@@ -155,6 +155,15 @@ public class AppController {
 		model.addAttribute("lowInventory", lowInventory);
 
 		return "order";
+	}
+
+	@RequestMapping(value = "/emp")
+	public String employeeSearch(Model model){
+
+		List<String> categories = productService.getCategories();
+		model.addAttribute("categories", categories);
+
+		return "employee_search";
 	}
 	
 }
