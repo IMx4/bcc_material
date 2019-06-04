@@ -4,22 +4,22 @@
 
 function getDesc() {
 	const x = document.getElementById("description").value;
-	document.getElementById("modalBody").innerHTML = "Add - " + x
-			+ "  to Database?";
+	document.getElementById("modalBody").innerHTML = "Change - " + x;
+
 }
 
 function showMinStock(){
 
-    const min = document.getElementById("min-stock");
+    const min = document.getElementById("inventory-control-toggle");
+    const minQty = document.getElementById("min-stock");
 
-    if(min.hidden === true){
+        if(min.checked === true){
 
-        min.hidden = false;
+            minQty.hidden = false;
 
-    } else {
-        min.hidden = true;
-    }
-
+        } else {
+            minQty.hidden = true;
+        }
 
 
 }

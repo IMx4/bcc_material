@@ -1,17 +1,11 @@
 package com.bcc.mm.service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 import com.bcc.mm.repository.IProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import com.bcc.mm.dto.ProductDTO;
-import org.springframework.stereotype.Service;
-
-import javax.transaction.Transactional;
 
 @Component
 public class ProductService implements IProductService{
@@ -22,8 +16,16 @@ public class ProductService implements IProductService{
 	
 	
 	public ProductDTO getById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+
+		Optional<ProductDTO> searchProduct = repository.findById(id);
+		ProductDTO product;
+
+		if(searchProduct.isPresent()){
+			return product = searchProduct.get();
+		} else {
+
+			return null;
+		}
 	}
 
 	public List<ProductDTO> getAll() {
@@ -80,6 +82,8 @@ public class ProductService implements IProductService{
 
 		return result;
 	}
+
+
 
 
 }

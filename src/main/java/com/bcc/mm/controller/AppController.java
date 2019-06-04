@@ -87,7 +87,6 @@ public class AppController {
 	@RequestMapping(value = "/search", method = RequestMethod.POST)
 	public String search(@RequestParam(value="keyword")String term, Model model){
 
-        System.out.println(term);
         List<ProductDTO> searchList = productService.search(term);
 
 	    model.addAttribute("inventory", searchList);
@@ -112,17 +111,28 @@ public class AppController {
     }
 
 
-//    @RequestMapping(value="/search")
-//    public List<ProductDTO> search(@RequestParam(value="term",required = false, defaultValue="")String term, Model model){
-//
-//        System.out.println(term);
-//            List<ProductDTO> searchList = productService.search(term);
-//		model.addAttribute("inventory", searchList);
-//
-//		return searchList;
-//
-//        }
+    @GetMapping(value="/edit")
+    public String edit(@RequestParam(value="product",required = false, defaultValue="")String term, Model model){
+
+        ProductDTO product = productService.getById(Integer.parseInt(term));
+        CategoryService cs = new CategoryService();
+
+        model.addAttribute("item", product);
+        model.addAttribute("categories", cs.getCategories());
+
+		return "edit";
+
+	}
+
+	@PostMapping(value="/update")
+	public String update(@ModelAttribute(value="item") ProductDTO product){
 
 
+		productService.save(product);
+		//System.out.println("ID: " + product.getId());
+		//System.out.println("DESC: " + product.getDescription());
+
+		return "index";
+	}
 	
 }

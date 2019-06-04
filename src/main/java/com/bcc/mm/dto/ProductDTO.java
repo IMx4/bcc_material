@@ -34,7 +34,6 @@ public class ProductDTO {
     public ProductDTO(){
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
         description = "";
         length = "";
         width = "";
@@ -66,6 +65,11 @@ public class ProductDTO {
     public int getId() {
         return id;
     }
+
+    public void setId(int id){
+        this.id = id;
+    }
+
 
     public String getDate() {
     	
