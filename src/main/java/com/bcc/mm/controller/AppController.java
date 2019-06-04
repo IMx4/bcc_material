@@ -146,5 +146,15 @@ public class AppController {
 
 		return "index";
 	}
+
+	@GetMapping(value = "/order")
+	public String orderSoon(Model model){
+
+		List<ProductDTO> lowInventory = productService.getLowInventory();
+
+		model.addAttribute("lowInventory", lowInventory);
+
+		return "order";
+	}
 	
 }

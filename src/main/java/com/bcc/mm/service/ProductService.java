@@ -94,6 +94,13 @@ public class ProductService implements IProductService{
 		return false;
 	}
 
+	public List<ProductDTO> getLowInventory(){
+
+		List<ProductDTO> lowInventory = repository.getLowInventory();
+
+		return lowInventory;
+	}
+
 
 
 }

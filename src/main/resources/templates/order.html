@@ -10,12 +10,13 @@
 
 <div th:replace="navbar :: navbar"></div>
 
+
+
 <div class="container">
 
 	<br>
-	<h1 style="text-align: center;"><u>Current Inventory</u></h1>
+	<h1 style="text-align: center;"><u>Inventory Low - Order Soon</u></h1>
 	<br>
-
 	<table class="table table-hover table-dark">
 	    <thead>
 	        <tr>
@@ -25,28 +26,24 @@
 	            <th scope="col"> Width </th>
 	            <th scope="col"> Thick </th>
 	            <th scope="col"> Category </th>
-	            <th scope="col"> Edit </th>
 	        </tr>
 	    </thead>
 	    <tbody>
-	    <tr th:if="${inventory.empty}">
-	            <td colspan="2"> No Inventory </td>
+	    <tr th:if="${lowInventory.empty}">
+	            <td colspan="2"> No Low Inventory </td>
 	        </tr>
-	        <tr scope="row" th:each="item : ${inventory}">
+	        <tr scope="row" th:each="item : ${lowInventory}">
 	            <td><span th:text="${item.description}"> Description </span></td>
 	            <td><span th:text="${item.qty}"> Qty </span></td>
 	            <td><span th:text="${item.length}"> Length </span></td>
 	            <td><span th:text="${item.width}"> Width </span></td>
 	            <td><span th:text="${item.thick}"> Thick </span></td>
 	            <td><span th:text="${item.category}"> Category </span></td>
-				<form action="/edit">
-					<input type="text" name="product" th:value="*{item.id}" hidden="true"/>
-					<td><span><button type="submit">Edit</button></span></td>
-				</form>
 	        </tr>
 	    </tbody>
 	</table>
 </div>
+
 
 <div th:replace="common_footer :: common-footer"></div>
 

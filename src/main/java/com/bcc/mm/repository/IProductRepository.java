@@ -26,4 +26,9 @@ public interface IProductRepository extends CrudRepository<ProductDTO, Integer> 
             "stockControlMin) FROM ProductDTO where description like %:keyword%")
     public List<ProductDTO> search(@Param("keyword") String keyword);
 
+    @Query("SELECT new ProductDTO(id, description, length, width, " +
+            "thick, qty, category, date, stockControl, " +
+            "stockControlMin) FROM ProductDTO where stockControl=1 AND stockControlMin > qty")
+    public List<ProductDTO> getLowInventory();
+
 }
