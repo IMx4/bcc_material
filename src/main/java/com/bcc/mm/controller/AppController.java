@@ -104,6 +104,7 @@ public class AppController {
         List<ProductDTO> searchList = productService.search(term);
         for(ProductDTO item : searchList){
             results.add(item.getDescription());
+			System.out.println(item.getDescription());
 
         }
 
@@ -158,12 +159,29 @@ public class AppController {
 	}
 
 	@RequestMapping(value = "/emp")
-	public String employeeSearch(Model model){
 
-		List<String> categories = productService.getCategories();
-		model.addAttribute("categories", categories);
+	public String employeeSearch( @RequestParam("category")String category , Model model){
+		System.out.println(category);
+		if(category.equals("all")) {
+			List<String> categories = productService.getCategories();
+			model.addAttribute("categories", categories);
+		} else {
+
+			List<String> productDesc = new ArrayList<>();
+
+			List<ProductDTO> items = productService.getProductsByCategory(category);
+			for(ProductDTO product : items){
+
+				productDesc.add(product.getDescription());
+			}
+
+			model.addAttribute("categories", productDesc);
+		}
 
 		return "employee_search";
 	}
+
+
+
 	
 }

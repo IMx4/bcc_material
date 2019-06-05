@@ -1,32 +1,30 @@
 <!doctype html>
 <html lang="en">
 <html xmlns:th="http://www.thymeleaf.org">
-
 <head th:replace="common_header :: common-header"></head>
-
 <body>
-
 <div th:replace="navbar :: navbar"></div>
-
 <div class="container">
-<br>
-<h1 style="text-align: center;"><u>Current Inventory</u></h1>
-<br>
-
-    <div class="row">
-        <div th:each="cat : ${categories}" class="col">
-            <button type="button" th:text="${cat}"></button>
-
-        </div>
-
-
+    <br>
+    <br>
+    <div class="jumbotron">
+        <h1 class="display-3" style="text-align: center;">Select a
+            Category</h1>
     </div>
 
+    <div class="row">
+        <form th:action = "@{/emp}"}>
+            <div class="col" align="center" >
+            <span th:each="cat : ${categories}" >
+                <button type="submit" class="btn btn-primary" id="category-buttons" th:name="category" th:value="${cat}" th:text="${cat}">
+                </button>
+            </span>
+            </div>
+        </form>
+    </div>
 
 </div>
 
-
 <div th:replace="common_footer :: common-footer"></div>
-
 </body>
 </html>

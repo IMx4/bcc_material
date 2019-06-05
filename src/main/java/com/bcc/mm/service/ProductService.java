@@ -101,6 +101,13 @@ public class ProductService implements IProductService{
 		return lowInventory;
 	}
 
+	public List<ProductDTO> getProductsByCategory(String keyword){
+
+		List<ProductDTO> products = repository.findByCategoryLike(keyword);
+
+		return products;
+	}
+
 
 
 }

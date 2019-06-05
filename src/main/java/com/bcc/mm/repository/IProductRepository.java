@@ -19,6 +19,8 @@ public interface IProductRepository extends CrudRepository<ProductDTO, Integer> 
 
     List<ProductDTO> findByDescriptionLike(String keyword);
 
+    List<ProductDTO> findByCategoryLike (String keyword);
+
     void deleteById(int id);
 
     @Query("SELECT new ProductDTO(id, description, length, width, " +

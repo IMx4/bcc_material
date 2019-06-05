@@ -25,8 +25,8 @@
         </div>
 
         <div class="col md-3">
-            <form action="/add_material">
-                <button type="submit" class="btn btn-primary" style="padding: 25px; margin: 25px;">Add New Material</button>
+            <form th:action="@{/emp}">
+                <button type="submit" th:name="category" th:value="all" class="btn btn-primary" style="padding: 25px; margin: 25px;">Employee Search</button>
             </form>
         </div>
 
