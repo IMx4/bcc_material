@@ -13,7 +13,7 @@
     </div>
 
     <div class="row">
-        <form th:action = "@{/sub}"}>
+        <form th:action = "@{/final}"}>
             <div class="col" align="center" >
             <span th:each="cat : ${categories}" >
                 <button type="submit" class="btn btn-primary" id="category-buttons" th:name="category" th:value="${cat}" th:text="${cat}">

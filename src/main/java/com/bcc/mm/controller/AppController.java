@@ -159,47 +159,50 @@ public class AppController {
 	}
 
 
-	int state = 0;
 	@RequestMapping(value = "/emp")
 	public String employeeSearch( @RequestParam("category")String category, Model model){
 
-
-		if(category.equals("all")) {
-
 			List<String> categories = productService.getCategories();
-			List<ProductDTO> items = new ArrayList<>();
-			for (String cat : categories){
-
-				ProductDTO temp = new ProductDTO();
-				temp.setDescription(cat);
-				items.add(temp);
-			}
-				model.addAttribute("categories", items);
-			state += 1;
-
-		} else if(state == 1) {
-
-			List<ProductDTO> items = productService.getSubCategories(category);
-			for(ProductDTO product : items){
-				product.setDescription(product.getSubCategory());
-			}
-			model.addAttribute("categories", items);
-			state += 1;
-
-		} else if (state == 2){
-			List<ProductDTO> items = productService.findBySubCategoryLike(category);
-			model.addAttribute("categories", items);
-			state  += 1;
-		} else if (state == 3){
-
-			//ProductDTO product = productService.findByNameLike(category);
-
-			state = 0;
-			return "employee_edit";
-
-		}
+			model.addAttribute("categories", categories);
 
 		return "employee_search";
+	}
+
+	@RequestMapping(value = "/sub")
+	public String emplyeeSub(@RequestParam("category")String category, Model model){
+
+		List<String> items = productService.getDistinctSubCategories(category);
+		model.addAttribute("categories", items);
+
+		return "employee_search_sub";
+	}
+
+	@RequestMapping(value = "/final")
+	public String employeeFinal(@RequestParam("category")String category, Model model){
+
+		List<ProductDTO> items = productService.findBySubCategoryLike(category);
+		model.addAttribute("categories", items);
+
+		return "employee_search_final";
+	}
+
+	@RequestMapping(value = "/employee_edit")
+	public String employeeEdit(@RequestParam("category")String id, Model model){
+
+		ProductDTO product = productService.getById(Integer.parseInt(id));
+		model.addAttribute("item", product);
+
+		return "employee_edit";
+	}
+
+	@GetMapping(value = "/emp_update")
+	public String employeeUpdate(@RequestParam("qty")String qty, @RequestParam("id") String id){
+
+		ProductDTO product = productService.getById(Integer.parseInt(id));
+		product.setQty(Integer.parseInt(qty));
+		productService.save(product);
+
+		return "index";
 	}
 
 

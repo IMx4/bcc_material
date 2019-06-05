@@ -13,10 +13,10 @@
     </div>
 
     <div class="row">
-        <form th:action = "@{/sub}"}>
+        <form th:action = "@{/employee_edit}"}>
             <div class="col" align="center" >
             <span th:each="cat : ${categories}" >
-                <button type="submit" class="btn btn-primary" id="category-buttons" th:name="category" th:value="${cat}" th:text="${cat}">
+                <button type="submit" class="btn btn-primary" id="category-buttons" th:name="category" th:value="${cat.id}" th:text="${cat.description}">
                 </button>
             </span>
             </div>

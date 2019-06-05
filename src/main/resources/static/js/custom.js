@@ -20,6 +20,18 @@ function getDescForDelete() {
 
 }
 
+function empAdd() {
+	const desc = document.getElementById("description").innerHTML;
+	const qty = document.getElementById("code").value;
+	document.getElementById("modalBody").innerHTML = "Add - " + desc;
+}
+
+function empRemove() {
+	const desc = document.getElementById("description").innerHTML;
+
+	document.getElementById("modalBody").innerHTML = "Remove - " + desc;
+}
+
 function showMinStock(){
 
     const min = document.getElementById("inventory-control-toggle");

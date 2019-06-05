@@ -128,6 +128,20 @@ public class ProductService implements IProductService{
 
 	}
 
+	public List<String> getDistinctSubCategories(String keyword){
+
+		List<ProductDTO> allCategories = (List<ProductDTO>) repository.findAll();
+
+		List<String> subCategories = allCategories
+				.stream()
+				.filter(x -> x.getCategory().equals(keyword))
+				.map(x -> x.getSubCategory())
+				.distinct()
+				.collect(Collectors.toList());
+
+		return subCategories;
+	}
+
 
 }
 

@@ -36,6 +36,9 @@ public interface IProductRepository extends CrudRepository<ProductDTO, Integer> 
             "stockControlMin) FROM ProductDTO where stockControl=1 AND stockControlMin > qty")
     public List<ProductDTO> getLowInventory();
 
+    @Query("SELECT DISTINCT subCategory FROM ProductDTO where subCategory like %:keyword%")
+    public List<ProductDTO> getDistinctSubCategories(String keyword);
+
 
 
 }
