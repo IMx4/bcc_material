@@ -67,10 +67,12 @@ public class ProductService implements IProductService{
 
 	}
 
+
+
 	@Override
 	public List<ProductDTO> searchByKeyword(String keyword) {
 
-		List<ProductDTO> allCategories = (List<ProductDTO>) repository.findByDescriptionLike(keyword);
+		List<ProductDTO> allCategories = repository.findByDescriptionLike(keyword);
 
 		return allCategories;
 	}
@@ -108,6 +110,23 @@ public class ProductService implements IProductService{
 		return products;
 	}
 
+	public List<ProductDTO> findBySubCategoryLike(String keyword){
+
+		List<ProductDTO> products = repository.findBySubCategoryLike(keyword);
+
+		return products;
+	}
+
+	public List<ProductDTO> getSubCategories(String keyword){
+
+		List<ProductDTO> allCategories = repository.findByCategoryLike(keyword);
+
+		return allCategories
+				.stream()
+				.distinct()
+				.collect(Collectors.toList());
+
+	}
 
 
 }

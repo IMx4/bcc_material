@@ -23,14 +23,12 @@ public class ProductDTO {
     private String thick;
     private int qty;
     private String category;
+    private String subCategory;
     private String date;
     private boolean stockControl;
     private int stockControlMin;
 
 
-    
-   
-    
     public ProductDTO(){
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -40,13 +38,14 @@ public class ProductDTO {
         thick = "";
         qty = 0;
         category = "";
+        subCategory = "";
         date = dateFormat.format(new java.sql.Date(System.currentTimeMillis()));
         stockControl = false;
         stockControlMin = 0;
 
     }
 
-    public ProductDTO(int id, String description, String length, String width, String thick, int qty, String category, String date, boolean stockControl, int stockControlMin){
+    public ProductDTO(int id, String description, String length, String width, String thick, int qty, String category, String subCategory,String date, boolean stockControl, int stockControlMin){
 
             this.id = id;
             this.description = description;
@@ -55,6 +54,7 @@ public class ProductDTO {
             this.thick = thick;
             this.qty = qty;
             this.category = category;
+            this.subCategory = subCategory;
             this.date = date;
             this.stockControl = stockControl;
             this.stockControlMin = stockControlMin;
@@ -150,5 +150,13 @@ public class ProductDTO {
 	public void setStockControlMin(int stockControlMin) {
 		this.stockControlMin = stockControlMin;
 	}
+
+    public String getSubCategory() {
+        return subCategory;
+    }
+
+    public void setSubCategory(String subCategory) {
+        this.subCategory = subCategory;
+    }
 
 }

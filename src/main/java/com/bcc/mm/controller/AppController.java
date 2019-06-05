@@ -158,27 +158,45 @@ public class AppController {
 		return "order";
 	}
 
-	@RequestMapping(value = "/emp")
 
-	public String employeeSearch( @RequestParam("category")String category , Model model){
+	int state = 0;
+	@RequestMapping(value = "/emp")
+	public String employeeSearch( @RequestParam("category")String category, Model model){
 
 
 		if(category.equals("all")) {
 
 			List<String> categories = productService.getCategories();
-			List<ProductDTO> categoriesAsObj = new ArrayList<>();
+			List<ProductDTO> items = new ArrayList<>();
 			for (String cat : categories){
 
 				ProductDTO temp = new ProductDTO();
 				temp.setDescription(cat);
-				categoriesAsObj.add(temp);
+				items.add(temp);
 			}
-			model.addAttribute("categories", categoriesAsObj);
+				model.addAttribute("categories", items);
+			state += 1;
 
-		} else {
+		} else if(state == 1) {
 
-			List<ProductDTO> items = productService.getProductsByCategory(category);
+			List<ProductDTO> items = productService.getSubCategories(category);
+			for(ProductDTO product : items){
+				product.setDescription(product.getSubCategory());
+			}
 			model.addAttribute("categories", items);
+			state += 1;
+
+		} else if (state == 2){
+			List<ProductDTO> items = productService.findBySubCategoryLike(category);
+			model.addAttribute("categories", items);
+			state  += 1;
+		} else if (state == 3){
+
+			//ProductDTO product = productService.findByNameLike(category);
+
+			state = 0;
+			return "employee_edit";
+
 		}
 
 		return "employee_search";

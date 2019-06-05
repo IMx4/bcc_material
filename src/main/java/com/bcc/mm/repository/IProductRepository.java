@@ -21,16 +21,21 @@ public interface IProductRepository extends CrudRepository<ProductDTO, Integer> 
 
     List<ProductDTO> findByCategoryLike (String keyword);
 
+    List<ProductDTO> findBySubCategoryLike(String keyword);
+
+
     void deleteById(int id);
 
     @Query("SELECT new ProductDTO(id, description, length, width, " +
-            "thick, qty, category, date, stockControl, " +
+            "thick, qty, category, subCategory, date, stockControl, " +
             "stockControlMin) FROM ProductDTO where description like %:keyword%")
     public List<ProductDTO> search(@Param("keyword") String keyword);
 
     @Query("SELECT new ProductDTO(id, description, length, width, " +
-            "thick, qty, category, date, stockControl, " +
+            "thick, qty, category, subCategory, date, stockControl, " +
             "stockControlMin) FROM ProductDTO where stockControl=1 AND stockControlMin > qty")
     public List<ProductDTO> getLowInventory();
+
+
 
 }
