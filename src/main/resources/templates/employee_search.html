@@ -16,7 +16,7 @@
         <form th:action = "@{/emp}"}>
             <div class="col" align="center" >
             <span th:each="cat : ${categories}" >
-                <button type="submit" class="btn btn-primary" id="category-buttons" th:name="category" th:value="${cat}" th:text="${cat}">
+                <button type="submit" class="btn btn-primary" id="category-buttons" th:name="category" th:value="${cat.description}" th:text="${cat.description}">
                 </button>
             </span>
             </div>

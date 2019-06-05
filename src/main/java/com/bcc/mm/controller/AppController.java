@@ -161,21 +161,24 @@ public class AppController {
 	@RequestMapping(value = "/emp")
 
 	public String employeeSearch( @RequestParam("category")String category , Model model){
-		System.out.println(category);
+
+
 		if(category.equals("all")) {
+
 			List<String> categories = productService.getCategories();
-			model.addAttribute("categories", categories);
+			List<ProductDTO> categoriesAsObj = new ArrayList<>();
+			for (String cat : categories){
+
+				ProductDTO temp = new ProductDTO();
+				temp.setDescription(cat);
+				categoriesAsObj.add(temp);
+			}
+			model.addAttribute("categories", categoriesAsObj);
+
 		} else {
 
-			List<String> productDesc = new ArrayList<>();
-
 			List<ProductDTO> items = productService.getProductsByCategory(category);
-			for(ProductDTO product : items){
-
-				productDesc.add(product.getDescription());
-			}
-
-			model.addAttribute("categories", productDesc);
+			model.addAttribute("categories", items);
 		}
 
 		return "employee_search";
