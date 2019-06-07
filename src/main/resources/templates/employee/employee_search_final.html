@@ -1,9 +1,10 @@
 <!doctype html>
 <html lang="en">
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="common_header :: common-header"></head>
+
+<head th:replace="fragments/common_header :: common-header"></head>
 <body>
-<div th:replace="navbar :: navbar"></div>
+<div th:replace="fragments/navbar :: navbar"></div>
 <div class="container">
     <br>
     <br>
@@ -13,10 +14,10 @@
     </div>
 
     <div class="row">
-        <form th:action = "@{/sub}"}>
+        <form th:action = "@{/employee_edit}"}>
             <div class="col" align="center" >
             <span th:each="cat : ${categories}" >
-                <button type="submit" class="btn btn-primary" id="category-buttons" th:name="category" th:value="${cat}" th:text="${cat}">
+                <button type="submit" class="btn btn-primary" id="category-buttons" th:name="category" th:value="${cat.id}" th:text="${cat.description}">
                 </button>
             </span>
             </div>
@@ -35,6 +36,6 @@
 <br>
 
 
-<div th:replace="common_footer :: common-footer"></div>
+<div th:replace="fragments/common_footer :: common-footer"></div>
 </body>
 </html>

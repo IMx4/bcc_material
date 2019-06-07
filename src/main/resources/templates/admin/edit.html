@@ -2,21 +2,17 @@
 <html lang="en">
 <html xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="common_header :: common-header"></head>
+<head th:replace="fragments/common_header :: common-header"></head>
 
 <body>
 
-    <div th:replace="navbar :: navbar"></div>
-
-
+    <div th:replace="fragments/navbar :: navbar"></div>
 
     <div class="container" id="add-material">
 
         <form action="#" th:action="@{/update}" th:object="${item}" method="post">
 
-
             <input type="number" th:field="*{id}" id="id" hidden="true" />
-
 
             <div class="form-group">
                 <label for="qty">Qty</label> <input type="text" th:field="*{qty}" class="form-control" id="qty"
@@ -27,13 +23,11 @@
                     class="form-control" id="description" placeholder="Enter description" />
             </div>
             <div class="form-group">
-                <label for="category">Category</label> <select th:field="*{category}" class="form-control"
+                <label for="category">Category</label>
+                <select th:field="*{category}" class="form-control"
                     id="category">
 
                     <option th:each="category : ${categories}" th:value="${category}">Category</option>
-
-
-
                 </select>
             </div>
             <div class="form-group">
@@ -68,33 +62,7 @@
                     <div>
 
 
-
-                        <!-- Modal -->
-                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-                            aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Add New
-                                            Material</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <p id=modalBody></p>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close
-                                        </button>
-                                        <button type="submit" class="btn btn-primary">Save
-                                            changes
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
+                        <div th:replace="fragments/common-modal :: common-modal"></div>
 
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"
                             onclick="getDesc()" id="material-submit">Submit
@@ -110,7 +78,7 @@
 
 
 
-    <div th:replace="common_footer :: common-footer"></div>
+    <div th:replace="fragments/common_footer :: common-footer"></div>
 
 </body>
 

@@ -2,11 +2,11 @@
 <html lang="en">
 <html xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="common_header :: common-header"></head>
+<head th:replace="fragments/common_header :: common-header"></head>
 
 <body>
 
-<div th:replace="navbar :: navbar"></div>
+<div th:replace="fragments/navbar :: navbar"></div>
 
 
 <div class="container" id="add-material">
@@ -98,7 +98,7 @@
 </div>
 
 
-<div th:replace="common_footer :: common-footer"></div>
+<div th:replace="fragments/common_footer :: common-footer"></div>
 
 </body>
 </html>

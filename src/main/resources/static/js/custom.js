@@ -21,9 +21,23 @@ function getDescForDelete() {
 }
 
 function empAdd() {
+
+    const currentQty = document.getElementById("qty").value;
+    document.getElementById("qty").value = parseInt(document.getElementById("code").value) + parseInt(currentQty);
+
 	const desc = document.getElementById("description").innerHTML;
 	const qty = document.getElementById("code").value;
-	document.getElementById("modalBody").innerHTML = "Add - " + desc;
+	let addRadio = document.getElementById("radioAdd").checked;
+	let delRadio = document.getElementById("radioDelete").checked;
+
+    if(addRadio){
+        document.getElementById("qty").value = parseInt(currentQty) + parseInt(document.getElementById("code").value);
+       document.getElementById("modalBody").innerHTML = "Add - " + qty;
+    } else if (delRadio){
+        document.getElementById("qty").value = parseInt(currentQty)- parseInt(document.getElementById("code").value);
+        document.getElementById("modalBody").innerHTML = "Remove - " + qty;
+    }
+
 }
 
 function empRemove() {
@@ -31,6 +45,8 @@ function empRemove() {
 
 	document.getElementById("modalBody").innerHTML = "Remove - " + desc;
 }
+
+
 
 function showMinStock(){
 
