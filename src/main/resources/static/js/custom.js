@@ -8,6 +8,13 @@ function addItem() {
 
 }
 
+function addEmployee() {
+	const fName = document.getElementById("first-name").value;
+	const lName = document.getElementById("last-name").value;
+	document.getElementById("modalBody").innerHTML = "Add " + fName + " " + lName;
+
+}
+
 function getDesc() {
 	const x = document.getElementById("description").value;
 	document.getElementById("modalBody").innerHTML = "Change - " + x;
@@ -61,5 +68,18 @@ function showMinStock(){
             minQty.hidden = true;
         }
 
+
+}
+
+function employeeToast(name){
+
+    const employeeName = name;
+
+    document.getElementById("toast-body").innerHTML = employeeName;
+
+$(document).ready(function(){
+
+        $("#myToast").toast('show');
+});
 
 }

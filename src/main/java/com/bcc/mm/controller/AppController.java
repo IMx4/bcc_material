@@ -1,8 +1,10 @@
 package com.bcc.mm.controller;
 
+import com.bcc.mm.dto.ProductDTO;
 import com.bcc.mm.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -25,6 +27,16 @@ public class AppController {
 
 		return "index";
 	}
+
+	@RequestMapping("/test/{id}")
+	public String test(@PathVariable(value = "id") int id, Model model) {
+
+		ProductDTO product = productService.getById(id);
+		model.addAttribute("product", product);
+
+		return "test";
+	}
+
 
 
 //	@RequestMapping(value = "/add_material", method = RequestMethod.GET)
