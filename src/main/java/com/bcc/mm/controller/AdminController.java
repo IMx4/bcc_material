@@ -1,6 +1,6 @@
 package com.bcc.mm.controller;
 import com.bcc.mm.dto.ProductDTO;
-import com.bcc.mm.service.CategoryService;
+import com.bcc.mm.service.PropertiesService;
 import com.bcc.mm.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,8 +20,8 @@ public class AdminController {
     @RequestMapping(value = "/add_material", method = RequestMethod.GET)
     public String add(Model model) {
 
-        CategoryService cs = new CategoryService();
-        List<String> categories = cs.getCategories();
+        PropertiesService cs = new PropertiesService();
+        List<String> categories = PropertiesService.getCategories();
 
         ProductDTO product = new ProductDTO();
 
@@ -88,7 +88,7 @@ public class AdminController {
     public String edit(@RequestParam(value="product",required = false, defaultValue="")String term, Model model){
 
         ProductDTO product = productService.getById(Integer.parseInt(term));
-        CategoryService cs = new CategoryService();
+        PropertiesService cs = new PropertiesService();
 
         model.addAttribute("item", product);
         model.addAttribute("categories", cs.getCategories());

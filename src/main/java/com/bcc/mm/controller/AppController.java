@@ -4,10 +4,13 @@ import com.bcc.mm.dto.EmployeeDTO;
 import com.bcc.mm.dto.ProductDTO;
 import com.bcc.mm.service.EmployeeService;
 import com.bcc.mm.service.ProductService;
+import com.bcc.mm.service.PropertiesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Properties;
 
 
 @Controller
@@ -20,7 +23,29 @@ public class AppController {
 	EmployeeService employeeService;
 
 	/**
-	 * maps user enetered pin to correct landing page
+	 * root of app
+	 * @return html view for login
+	 */
+	@RequestMapping("/")
+	public String index() {
+
+		// Initial setup requires application property "setup" to be to 'true'
+		// This enables access to the admin page to create admin account
+
+
+
+		if(PropertiesService.isSetup().equals("true")){
+
+			PropertiesService.setupComplete();
+
+			return "index";
+		}
+
+		return "login";
+	}
+
+	/**
+	 * maps user entered pin to correct landing page
 	 * @param id user id entered from keypad in login.html
 	 * @return html view for admin or standard user
 	 */
@@ -28,8 +53,7 @@ public class AppController {
 	public String validateUser(@RequestParam(value = "id") String id){
 
 		EmployeeDTO employee = employeeService.getEmployeeByPin(Integer.parseInt(id));
-
-		if(employee != null){
+		if(employee != null ){
 
 			if(employee.getJobPosition().equals("admin")){
 
@@ -42,140 +66,5 @@ public class AppController {
 		}
 		return "login";
 	}
-	
 
-//	@RequestMapping(value = "/login", method = RequestMethod.GET)
-//	public String login(Model model) {
-//
-//		return "login";
-//	}
-	
-	@RequestMapping("/")
-	public String index() {
-
-
-		return "login";
-	}
-
-
-
-
-//	@RequestMapping(value = "/add_material", method = RequestMethod.GET)
-//	public String add(Model model) {
-//
-//		CategoryService cs = new CategoryService();
-//		List<String> categories = cs.getCategories();
-//
-//		ProductDTO product = new ProductDTO();
-//
-//		model.addAttribute("product", product);
-//		model.addAttribute("categories",categories);
-//
-//		return"add_material";
-//	}
-//
-//	@RequestMapping(value = "/add_material", method = RequestMethod.POST)
-//	public String saveNew(@ModelAttribute(value="product") ProductDTO product) {
-//
-//
-//		productService.save(product);
-//
-//		return "/index";
-//	}
-//
-//	@RequestMapping("/showall")
-//	public String showAll(Model model) {
-//
-//		List<ProductDTO> all = productService.getAll();
-//		model.addAttribute("inventory", all);
-//
-//		return "all_products";
-//	}
-//
-//    @RequestMapping(value = "/search", method = RequestMethod.GET)
-//    public String search(){
-//
-//
-//        return "search";
-//    }
-//
-//	@RequestMapping(value = "/search", method = RequestMethod.POST)
-//	public String search(@RequestParam(value="keyword")String term, Model model){
-//
-//        List<ProductDTO> searchList = productService.search(term);
-//
-//	    model.addAttribute("inventory", searchList);
-//
-//
-//		return "search";
-//	}
-//
-//    @RequestMapping(value = "/search/result", method = RequestMethod.GET)
-//    @ResponseBody
-//    public List<String> searchResult(@RequestParam(value="term",required = false, defaultValue="")String term){
-//
-//	    List<String> results = new ArrayList<>();
-//
-//        List<ProductDTO> searchList = productService.search(term);
-//        for(ProductDTO item : searchList){
-//            results.add(item.getDescription());
-//			System.out.println(item.getDescription());
-//
-//        }
-//
-//        return results;
-//    }
-//
-//
-//    @GetMapping(value="/edit")
-//    public String edit(@RequestParam(value="product",required = false, defaultValue="")String term, Model model){
-//
-//        ProductDTO product = productService.getById(Integer.parseInt(term));
-//        CategoryService cs = new CategoryService();
-//
-//        model.addAttribute("item", product);
-//        model.addAttribute("categories", cs.getCategories());
-//
-//		return "edit";
-//
-//	}
-//
-//	@PostMapping(value="/update")
-//	public String update(@ModelAttribute(value="item") ProductDTO product){
-//
-//		productService.save(product);
-//
-//		return "index";
-//	}
-//
-//
-//	@PostMapping(value="/delete")
-//	public void delete(@ModelAttribute(value="item") ProductDTO product, Model model){
-//
-//		model.addAttribute("item", product);
-//	}
-//
-//	@PostMapping(value="/deleteNow")
-//	public String deleteNow(@ModelAttribute(value="id") String id){
-//
-//		productService.delete(Integer.parseInt(id));
-//
-//		return "index";
-//	}
-//
-//	@GetMapping(value = "/order")
-//	public String orderSoon(Model model){
-//
-//		List<ProductDTO> lowInventory = productService.getLowInventory();
-//
-//		model.addAttribute("lowInventory", lowInventory);
-//
-//		return "order";
-//	}
-
-
-//
-
-
-	
 }
