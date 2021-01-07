@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/common_header :: common-header"></head>
+
+<body>
+
+<div th:replace="fragments/navbar :: navbar"></div>
+
+
+<div class="container">
+    <div class="row" id="index-buttons">
+
+        <div class="col md-3">
+            <form action="/showall">
+                <button type="submit" class="btn btn-primary" style="padding: 25px; margin: 25px;">Show Inventory</button>
+            </form>
+        </div>
+
+        <div class="col md-3">
+            <form action="/search">
+                <button type="submit" class="btn btn-primary" style="padding: 25px; margin: 25px;">Search Inventory</button>
+            </form>
+        </div>
+
+        <div class="col md-3">
+            <form th:action="@{/emp}">
+                <button type="submit" th:name="category" th:value="all" class="btn btn-primary" style="padding: 25px; margin: 25px;">Employee Search</button>
+            </form>
+        </div>
+
+    </div>
+</div>
+
+
+<div th:replace="fragments/common_footer :: common-footer"></div>
+
+</body>
+</html>

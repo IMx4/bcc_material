@@ -22,7 +22,7 @@ public class CategoryService {
         property = new Properties();
 
         try {
-            property.load(new FileInputStream("./main/resources/application.properties"));
+            property.load(new FileInputStream("src/main/resources/application.properties"));
         } catch (
                 IOException e) {
             e.printStackTrace();
@@ -30,6 +30,7 @@ public class CategoryService {
         }
 
         categories = Arrays.asList(property.getProperty("categories").split(","));
+
 
     }
 

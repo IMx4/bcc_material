@@ -30,6 +30,16 @@ public class EmployeeDTO {
 
     }
 
+    public EmployeeDTO(int id,  String firstName, String lastName, String jobPosition, int pin){
+
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.jobPosition = jobPosition;
+        this.pin = pin;
+
+    }
+
     public int getId() {
         return id;
     }

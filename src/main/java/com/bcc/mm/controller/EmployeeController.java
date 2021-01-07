@@ -19,7 +19,7 @@ public class EmployeeController {
 
     // Employee index of Categories
     @RequestMapping(value = "/emp")
-    public String employeeSearch(@RequestParam("category")String category, Model model){
+    public String employeeSearch(Model model){
 
         List<String> categories = productService.getCategories();
         model.addAttribute("categories", categories);
@@ -27,7 +27,7 @@ public class EmployeeController {
         return "employee/employee_search";
     }
 
-    // Emplyee index of Sub Categories
+    // Employee index of Sub Categories
     @RequestMapping(value = "/sub")
     public String emplyeeSub(@RequestParam("category")String category, Model model){
 

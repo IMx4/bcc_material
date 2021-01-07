@@ -48,5 +48,15 @@ public class EmployeeService implements IEmployeeService {
         return employee;
     }
 
+    public EmployeeDTO getEmployeeByPin(int pin){
+
+
+        EmployeeDTO employee = employeeRepository.findByPinLike(pin);
+
+
+
+        return employee;
+    }
+
 
 }

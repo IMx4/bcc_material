@@ -28,7 +28,7 @@ public class AdminController {
         model.addAttribute("product", product);
         model.addAttribute("categories",categories);
 
-        return"admin/add_material";
+        return "admin/add_material";
     }
 
     @RequestMapping(value = "/add_material", method = RequestMethod.POST)

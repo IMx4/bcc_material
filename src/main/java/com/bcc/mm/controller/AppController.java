@@ -1,6 +1,8 @@
 package com.bcc.mm.controller;
 
+import com.bcc.mm.dto.EmployeeDTO;
 import com.bcc.mm.dto.ProductDTO;
+import com.bcc.mm.service.EmployeeService;
 import com.bcc.mm.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,29 +15,48 @@ public class AppController {
 	
 	@Autowired
 	ProductService productService;
-	
 
-	@RequestMapping("/login")
-	public String login() {
-		
+	@Autowired
+	EmployeeService employeeService;
+
+	/**
+	 * maps user enetered pin to correct landing page
+	 * @param id user id entered from keypad in login.html
+	 * @return html view for admin or standard user
+	 */
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	public String validateUser(@RequestParam(value = "id") String id){
+
+		EmployeeDTO employee = employeeService.getEmployeeByPin(Integer.parseInt(id));
+
+		if(employee != null){
+
+			if(employee.getJobPosition().equals("admin")){
+
+				return "index";
+
+			} else {
+
+				return "employee/employee_index";
+			}
+		}
 		return "login";
 	}
+	
+
+//	@RequestMapping(value = "/login", method = RequestMethod.GET)
+//	public String login(Model model) {
+//
+//		return "login";
+//	}
 	
 	@RequestMapping("/")
 	public String index() {
 
 
-		return "index";
+		return "login";
 	}
 
-	@RequestMapping("/test/{id}")
-	public String test(@PathVariable(value = "id") int id, Model model) {
-
-		ProductDTO product = productService.getById(id);
-		model.addAttribute("product", product);
-
-		return "test";
-	}
 
 
 
