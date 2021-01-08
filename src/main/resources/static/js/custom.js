@@ -4,16 +4,8 @@
 
 function validate() {
 
-    const currentQty = document.getElementById("qty").value;
-    document.getElementById("qty").value = parseInt(document.getElementById("code").value) + parseInt(currentQty);
-
-
 	const qty = document.getElementById("code").value;
-
-
-
-    document.getElementById("qty").value = parseInt(currentQty) + parseInt(document.getElementById("code").value);
-    document.getElementById("modalBody").innerHTML = "Logging In - " + qty;
+    document.getElementById("modalBody").innerHTML = "Logging In - ";
 
 
 }

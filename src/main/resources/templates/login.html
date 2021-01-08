@@ -18,6 +18,8 @@
         <h1 class="display-3" style="text-align: center;">System Login</h1>
     </div>
 
+    <h1 th:if="${invalid_login}" style="text-align: center"> Invalid Login </h1>
+
     <div class="container" align="center">
         <form action="#" th:action="@{/login}"  method="post">
                 <!-- Keypad -->
@@ -54,9 +56,9 @@
                 <div class="row">
                     <div class="col">
                         <div class="d-grid gap-2" style="margin-left: 19px;">
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"
-                                    onclick="validate()" id="material-submit">Submit
-                            </button>
+
+                            <button type="submit" class="btn btn-primary" id="material-submit">Submit</button>
+
                             <button type="submit" class="btn btn-primary" id="material-clear" style="margin-left: 105px"
                                     th:formaction="@{/}">Cancel</button>
                         </div>

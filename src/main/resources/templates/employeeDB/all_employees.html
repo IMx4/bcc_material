@@ -58,9 +58,7 @@
                     <td><span><a th:href="@{/employee-delete/{id}(id = ${employee.id})}">
                         <button class="btn btn-danger" type="button">Delete</button>
                     </a></span></td>
-                    <td><span>
-                        <button class="btn btn-danger" th:value="${employee.firstName} + ' ' + ${employee.lastName}" onclick="employeeToast(this.value)" type="button">toast</button>
-                    </span></td>
+
                 </form>
             </tr>
             </tbody>

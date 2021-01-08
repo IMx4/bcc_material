@@ -1,7 +1,7 @@
 package com.bcc.mm.controller;
 
+import com.bcc.mm.AppState;
 import com.bcc.mm.dto.EmployeeDTO;
-import com.bcc.mm.dto.ProductDTO;
 import com.bcc.mm.service.EmployeeService;
 import com.bcc.mm.service.ProductService;
 import com.bcc.mm.service.PropertiesService;
@@ -9,8 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Properties;
 
 
 @Controller
@@ -50,12 +48,14 @@ public class AppController {
 	 * @return html view for admin or standard user
 	 */
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String validateUser(@RequestParam(value = "id") String id){
+	public String validateUser(@RequestParam(value = "id") String id, Model model){
 
 		EmployeeDTO employee = employeeService.getEmployeeByPin(Integer.parseInt(id));
 		if(employee != null ){
 
-			if(employee.getJobPosition().equals("admin")){
+			AppState.user = employee;
+
+			if(AppState.isAdmin()){
 
 				return "index";
 
@@ -64,7 +64,25 @@ public class AppController {
 				return "employee/employee_index";
 			}
 		}
+
+		model.addAttribute("invalid_login", "Invalid Login");
 		return "login";
 	}
+
+	@RequestMapping(value = "/home")
+	public String home(Model model){
+
+			model.addAttribute("isAdmin", AppState.isAdmin());
+
+			if(AppState.isAdmin()){
+
+				return "index";
+
+			} else {
+
+				return "employee/employee_index";
+			}
+		}
+
 
 }

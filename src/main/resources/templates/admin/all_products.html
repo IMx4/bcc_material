@@ -39,9 +39,10 @@
 	            <td><span th:text="${item.width}"> Width </span></td>
 	            <td><span th:text="${item.thick}"> Thick </span></td>
 	            <td><span th:text="${item.category}"> Category </span></td>
+
 				<form action="/edit">
 					<input type="text" name="product" th:value="*{item.id}" hidden="true"/>
-					<td><span><button type="submit">Edit</button></span></td>
+					<td th:if="${isAdmin} == true"><span><button type="submit">Edit</button></span></td>
 				</form>
 	        </tr>
 	    </tbody>

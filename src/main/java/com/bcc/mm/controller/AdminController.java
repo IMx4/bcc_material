@@ -1,4 +1,5 @@
 package com.bcc.mm.controller;
+import com.bcc.mm.AppState;
 import com.bcc.mm.dto.ProductDTO;
 import com.bcc.mm.service.PropertiesService;
 import com.bcc.mm.service.ProductService;
@@ -13,6 +14,7 @@ import java.util.List;
 
 @Controller
 public class AdminController {
+
 
     @Autowired
     ProductService productService;
@@ -45,13 +47,15 @@ public class AdminController {
 
         List<ProductDTO> all = productService.getAll();
         model.addAttribute("inventory", all);
+        model.addAttribute("isAdmin", AppState.isAdmin());
 
         return "admin/all_products";
     }
 
     @RequestMapping(value = "/search", method = RequestMethod.GET)
-    public String search(){
+    public String search(Model model){
 
+        model.addAttribute("isAdmin", AppState.isAdmin());
 
         return "admin/search";
     }
@@ -62,7 +66,7 @@ public class AdminController {
         List<ProductDTO> searchList = productService.search(term);
 
         model.addAttribute("inventory", searchList);
-
+        model.addAttribute("isAdmin", AppState.isAdmin());
 
         return "admin/search";
     }

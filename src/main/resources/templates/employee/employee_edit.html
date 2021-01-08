@@ -16,16 +16,16 @@
 
                 <div class="container" id="add-material">
 
-                    <div class="form-group" style="margin-left: 30px">
+                    <div class="form-group" style="margin-left: 15px">
                         <form action="#" th:action="@{/emp_update}" th:object="${item}" method="get">
 
                             <input type="number" th:name="id" th:value="${item.id}" id="id" hidden="true" />
                             <h1 th:text="|${item.description}|" id="description">description</h1>
 
 
-                            <div class="form-group">
+                            <div class="form-group" style="align-content: center;">
                                 <label for="qty">Current Stock</label>
-                                <input type="text" th:name="qty" th:value="${item.qty}" class="form-control" style="width:30%; font-size: 20px" id="qty" placeholder="Enter qty - ex. 10" readonly>
+                                <input type="text" th:name="qty" th:value="${item.qty}" class="form-control" style="width:30%; font-size: 20px; margin-left: 330px" id="qty" placeholder="Enter qty - ex. 10" readonly>
                             </div>
 
                             <div class="btn-group">
@@ -66,13 +66,13 @@
                                     </div>
                                 </div>
                             </div>
-                               <div class="row">
+                               <div class="row" >
                                <div class="col">
-                               <div class="btn-toolbar">
+                               <div class="d-grid gap-2" >
                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"
                                            onclick="empAdd()" id="material-submit">Submit
                                    </button>
-                                   <button type="submit" class="btn btn-primary" id="material-clear" style="margin-left: 110px"
+                                   <button type="submit" class="btn btn-primary" id="material-clear" style="margin-left: 90px"
                                            th:formaction="@{/}">Cancel</button>
                                </div>
                                </div>

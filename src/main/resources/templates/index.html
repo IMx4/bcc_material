@@ -12,30 +12,48 @@
 <div class="container">
     <div class="row" id="index-buttons">
 
-        <div class="col md-3">
+        <div class="col-md-3">
             <form action="/showall">
                 <button type="submit" class="btn btn-primary" style="padding: 25px; margin: 25px;">Show Inventory</button>
             </form>
         </div>
 
-        <div class="col md-3">
+        <div class="col-md-3">
             <form action="/search">
                 <button type="submit" class="btn btn-primary" style="padding: 25px; margin: 25px;">Search Inventory</button>
             </form>
         </div>
 
-        <div class="col md-3">
+        <div class="col-md-3">
             <form th:action="@{/emp}">
                 <button type="submit" th:name="category" th:value="all" class="btn btn-primary" style="padding: 25px; margin: 25px;">Employee Search</button>
             </form>
         </div>
-
-        <div class="col md-3">
+        <div class="col-md-3">
             <form action="/add_material">
-            <button type="submit" class="btn btn-primary" style="padding: 25px; margin: 25px;">Add New Material</button>
+                <button type="submit" class="btn btn-primary" style="padding: 25px; margin: 25px;">Add New Material</button>
             </form>
         </div>
 
+    </div>
+
+    <div class="row" id="index-buttons-row2">
+
+        <div class="col-md-3"></div>
+        <div class="col-md-3">
+            <form action="/employee/add">
+                <button type="submit" class="btn btn-primary" style="padding: 25px; margin: 25px;">Add New Employee</button>
+            </form>
+        </div>
+
+        <div class="col-md-3">
+            <form action="/employee/all">
+                <button type="submit" class="btn btn-primary" style="padding: 25px; margin: 25px;">All Employees</button>
+            </form>
+        </div>
+        <div class="col-md-3"></div>
+
+    </div>
 
     </div>
 </div>

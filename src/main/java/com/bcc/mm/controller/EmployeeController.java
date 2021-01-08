@@ -65,7 +65,7 @@ public class EmployeeController {
         product.setQty(Integer.parseInt(qty));
         productService.save(product);
 
-        return "index";
+        return "employee/employee_index";
     }
 
 
