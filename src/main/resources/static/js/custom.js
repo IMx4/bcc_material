@@ -12,6 +12,7 @@ function validate() {
 
 function addItem() {
 	const x = document.getElementById("description").value;
+
 	document.getElementById("modalBody").innerHTML = "Add - " + x;
 
 }
@@ -35,7 +36,9 @@ function getDescForDelete() {
 
 }
 
-function empAdd() {
+function empAdd(x) {
+
+    console.log(x)
 
     const currentQty = document.getElementById("qty").value;
     document.getElementById("qty").value = parseInt(document.getElementById("code").value) + parseInt(currentQty);
@@ -45,6 +48,8 @@ function empAdd() {
 	let addRadio = document.getElementById("radioAdd").checked;
 	let delRadio = document.getElementById("radioDelete").checked;
 
+
+
     if(addRadio){
         document.getElementById("qty").value = parseInt(currentQty) + parseInt(document.getElementById("code").value);
        document.getElementById("modalBody").innerHTML = "Add - " + qty;
@@ -52,6 +57,8 @@ function empAdd() {
         document.getElementById("qty").value = parseInt(currentQty)- parseInt(document.getElementById("code").value);
         document.getElementById("modalBody").innerHTML = "Remove - " + qty;
     }
+
+    document.getElementById("title") = "Modifying" + x;
 
 }
 

@@ -80,7 +80,6 @@ public class AdminController {
         List<ProductDTO> searchList = productService.search(term);
         for(ProductDTO item : searchList){
             results.add(item.getDescription());
-            System.out.println(item.getDescription());
 
         }
 
@@ -105,6 +104,7 @@ public class AdminController {
     public String update(@ModelAttribute(value="item") ProductDTO product){
 
         productService.save(product);
+
 
         return "index";
     }

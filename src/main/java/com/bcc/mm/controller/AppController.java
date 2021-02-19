@@ -29,9 +29,6 @@ public class AppController {
 
 		// Initial setup requires application property "setup" to be to 'true'
 		// This enables access to the admin page to create admin account
-
-
-
 		if(PropertiesService.isSetup().equals("true")){
 
 			PropertiesService.setupComplete();
@@ -39,7 +36,7 @@ public class AppController {
 			return "index";
 		}
 
-		return "login";
+			return "login";
 	}
 
 	/**
@@ -48,20 +45,22 @@ public class AppController {
 	 * @return html view for admin or standard user
 	 */
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String validateUser(@RequestParam(value = "id") String id, Model model){
+	public String validateUser(@RequestParam(value = "id" ) String id, Model model){
 
-		EmployeeDTO employee = employeeService.getEmployeeByPin(Integer.parseInt(id));
-		if(employee != null ){
+		if(!id.isEmpty()) {
+			EmployeeDTO employee = employeeService.getEmployeeByPin(Integer.parseInt(id));
+			if (employee != null) {
 
-			AppState.user = employee;
+				AppState.user = employee;
 
-			if(AppState.isAdmin()){
+				if (AppState.isAdmin()) {
 
-				return "index";
+					return "index";
 
-			} else {
+				} else {
 
-				return "employee/employee_index";
+					return "employee/employee_index";
+				}
 			}
 		}
 

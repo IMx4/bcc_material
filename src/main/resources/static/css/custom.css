@@ -74,12 +74,27 @@ height:90%;
 
 #category-buttons{
 
-    font-size: 20pt;
+    font-size: 30pt;
     margin: 20px;
 
 }
 
 .btn-secondary{
     border-color: #0a0a0a;
+    font-size: 25pt;
 }
+
+.btn-primary{
+
+    font-size: 20pt;
+}
+
+#nav_home, #nav_logout{
+
+    font-size: 24pt;
+    color: red;
+
+
+}
+
 

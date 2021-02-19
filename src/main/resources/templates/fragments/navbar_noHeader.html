@@ -1,0 +1,44 @@
+<!Doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+
+<div th:fragment="navbar_noHeader">
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<a class="navbar-brand" href="/">BCC Material Manager</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+			aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item active" id="nav_home"><a class="nav-link" href="/home">Home
+						<span class="sr-only">(current)</span>
+					</a></li>
+
+				<li class="nav-item active" id="nav_logout"><a class="nav-link" href="/">Logout
+					<span class="sr-only">(current)</span>
+				</a></li>
+
+
+			</ul>
+
+			<script>
+				$(function () {
+					$("#keyword").autocomplete({
+						source: "search/result",
+						minLength: 2
+					});
+				});
+			</script>
+
+			<form class="form-inline my-2 my-lg-0" th:action="@{/search}" method="post">
+				<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"
+					th:value="*{keyword}" id="keyword" name="keyword">
+				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+			</form>
+		</div>
+	</nav>
+</div>
+
+</html>

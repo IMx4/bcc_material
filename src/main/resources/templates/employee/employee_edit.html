@@ -5,30 +5,34 @@
 <head th:replace="fragments/common_header :: common-header"></head>
 
 <body>
-    <div th:replace="fragments/navbar :: navbar"></div>
+
+    <div th:replace="fragments/navbar_noHeader :: navbar_noHeader"></div>
 
         <div class="container">
-            <br>
             <br>
                 <div class="page_header">
                     <h1 class="display-3" style="text-align: center;">Edit Inventory</h1>
                 </div>
 
-                <div class="container" id="add-material">
+                <div class="container" id="add-material" style="margin-top: -50px">
 
-                    <div class="form-group" style="margin-left: 15px">
+                    <div class="form-group" style="margin-left: 15px; margin-top: -25px">
                         <form action="#" th:action="@{/emp_update}" th:object="${item}" method="get">
+
+
 
                             <input type="number" th:name="id" th:value="${item.id}" id="id" hidden="true" />
                             <h1 th:text="|${item.description}|" id="description">description</h1>
 
-
-                            <div class="form-group" style="align-content: center;">
+                            
+                            <div class="form-group" style="align-content: center">
                                 <label for="qty">Current Stock</label>
                                 <input type="text" th:name="qty" th:value="${item.qty}" class="form-control" style="width:30%; font-size: 20px; margin-left: 330px" id="qty" placeholder="Enter qty - ex. 10" readonly>
                             </div>
 
-                            <div class="btn-group">
+
+
+                            <div class="btn-group" style="margin-top: -25px">
                             <label class="radio-inline"><input type="radio" name="optradio" id="radioAdd"> Add </label>
                             <label class="radio-inline"><input type="radio" name="optradio" id="radioDelete" checked> Remove </label>
                             </div>
@@ -36,7 +40,8 @@
 
                             <!-- Keypad -->
 
-                            <div class="row" style="margin-left: -40px">
+                            <div class="row" style="margin-left: -40px; margin-top: -25px">
+
                                 <div class="col">
                                     <div class="btn-group-vertical ml-4 mt-4" role="group" aria-label="Basic example">
                                         <div class="btn-group">
@@ -65,7 +70,9 @@
                                         </div>
                                     </div>
                                 </div>
+
                             </div>
+
                                <div class="row" >
                                <div class="col">
                                <div class="d-grid gap-2" >

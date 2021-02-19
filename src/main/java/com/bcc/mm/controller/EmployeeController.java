@@ -1,5 +1,7 @@
 package com.bcc.mm.controller;
+import com.bcc.mm.AppState;
 import com.bcc.mm.dto.ProductDTO;
+import com.bcc.mm.service.Logger;
 import com.bcc.mm.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -62,8 +64,19 @@ public class EmployeeController {
     public String employeeUpdate(@RequestParam("qty")String qty, @RequestParam("id") String id){
 
         ProductDTO product = productService.getById(Integer.parseInt(id));
+
+        int adjustedQty = Integer.parseInt(qty) - product.getQty();
+
         product.setQty(Integer.parseInt(qty));
         productService.save(product);
+
+        Logger.logUpdateItem(product, AppState.user, adjustedQty);
+
+        if(!AppState.isAdmin()){
+            AppState.user = null;
+            return "/login";
+
+        }
 
         return "employee/employee_index";
     }
