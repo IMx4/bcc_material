@@ -4,7 +4,6 @@ import com.bcc.mm.dto.EmployeeDTO;
 import com.bcc.mm.repository.IEmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,10 +49,7 @@ public class EmployeeService implements IEmployeeService {
 
     public EmployeeDTO getEmployeeByPin(int pin){
 
-
         EmployeeDTO employee = employeeRepository.findByPinLike(pin);
-
-
 
         return employee;
     }

@@ -11,8 +11,6 @@ import java.time.format.DateTimeFormatter;
 
 public class Logger {
 
-
-
     public static void logUpdateItem(ProductDTO product, EmployeeDTO employee, int qty){
 
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
@@ -29,19 +27,11 @@ public class Logger {
             bw.newLine();
             bw.close();
 
-
-
         } catch (IOException e) {
             e.printStackTrace();
         }
 
 
-
-
-
     }
-
-
-
 
 }

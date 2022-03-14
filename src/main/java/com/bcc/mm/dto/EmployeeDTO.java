@@ -1,6 +1,4 @@
 package com.bcc.mm.dto;
-
-
 import javax.persistence.*;
 
 @Entity

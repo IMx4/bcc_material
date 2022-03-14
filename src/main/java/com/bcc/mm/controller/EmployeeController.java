@@ -72,16 +72,13 @@ public class EmployeeController {
 
         Logger.logUpdateItem(product, AppState.user, adjustedQty);
 
-        if(!AppState.isAdmin()){
-            AppState.user = null;
-            return "/login";
-
-        }
+//        // if the user is not admin - redirect to login page
+//        if(!AppState.isAdmin()){
+//            AppState.user = null;
+//            return "/login";
+//        }
 
         return "employee/employee_index";
     }
-
-
-
 
 }

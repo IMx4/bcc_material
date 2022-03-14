@@ -1,13 +1,9 @@
 package com.bcc.mm;
-
 import com.bcc.mm.dto.EmployeeDTO;
-
-
 
 public class AppState {
 
     public static EmployeeDTO user = null;
-
 
     public static boolean isAdmin(){
 
@@ -19,10 +15,5 @@ public class AppState {
         }
 
     }
-
-
-
-
-
 
 }

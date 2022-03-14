@@ -50,6 +50,7 @@ public class EmployeeDBController {
     @RequestMapping("/employee-delete/{id}")
     public String deleteEmployee(@PathVariable(value = "id") String id, Model model){
 
+        employeeService.deleteById(Integer.parseInt(id));
 
         return "redirect:/employee/all";
     }

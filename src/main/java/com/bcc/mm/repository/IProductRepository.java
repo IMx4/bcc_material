@@ -2,12 +2,9 @@ package com.bcc.mm.repository;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
-
 import com.bcc.mm.dto.ProductDTO;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
-
-import java.util.HashMap;
 import java.util.List;
 
 @Repository("repository")

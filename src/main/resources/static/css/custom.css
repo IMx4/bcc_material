@@ -35,14 +35,14 @@ body{
 #index-buttons{
 
 	margin: 35px;
-	padding: 75px;
+	padding: 10px;
 
 }
 
 #index-buttons-row2{
 
 	margin: 35px;
-	padding: 75px;
+	padding: 10px;
 
 }
 
@@ -75,6 +75,7 @@ height:90%;
 #category-buttons{
 
     font-size: 30pt;
+    width: 60%;
     margin: 20px;
 
 }
